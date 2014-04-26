@@ -1,0 +1,24 @@
+Misc R Functions
+========================================================
+
+
+```{r}
+
+# inserts NA values into a vector; used for data simulation
+# x must be numeric object
+# cut controls what values are removed (ex., >= 1.0)
+# prop 
+NAins <-  NAinsert <- function(x, cut = 1.0, prop = 0.5){
+    make.cut <- which(x >= cut)  
+    n <- length(make.cut)
+    num.to.na <- floor(prop*(length(make.cut)))
+    id <- sample(make.cut, num.to.na, replace = FALSE)
+    sapply(seq(num.to.na), function(x){
+        x[id] <<- NA
+        }
+    )
+    return(x)
+}
+
+```
+
